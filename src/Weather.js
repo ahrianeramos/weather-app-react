@@ -20,7 +20,7 @@ export default function Weather(props) {
             value="Search"
             className="btn btn-primary mb-1"
             id="search-btn"
-            autocomplete="off" />
+            autoComplete="off" />
         </div>
       </form>
 
