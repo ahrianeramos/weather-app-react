@@ -1,28 +1,41 @@
 import React from "react";
+import "./Weather.css";
 import axios from "axios";
-import Loader from "react-loader-spinner";
 
 
 export default function Weather(props) {
-  
-  function showTemp(response) {
-    let city = response.data.name;
-    let temp = Math.round(response.data.main.temp);
-    console.log(`the temp in ${city} is ${temp}°F`);
-  }
-  
-  let apiKey = `d181817faaf7ac4148d91ac2cdf0c65a`;
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${props.city}&appid=${apiKey}&units=imperial`;
-
-  axios.get(apiUrl).then(showTemp);
   return (
-    <Loader
-        type="Bars"
-        color="#F7F3FF"
-        secondaryColor="#00BFFF"
-        height={200}
-        width={200}
-        timeout={5000} //1000 for 1 sec
-     />
+    <div className="Weather">
+      <div className="Location-header">
+        <div className="col-auto" id="location">San Francisco</div>
+        <div className="col-6" id="current-date">Wednesday 01:06</div>
+        <div className="col-6" id="description">Clear Sky</div>
+      </div>
+
+      <div className="row">
+        <div className="col-2" id="icon-position">
+          <img src="https://openweathermap.org/img/wn/01n@2x.png" id-="temp-icon" width="100" alt="temperature icon" />
+        </div>
+        <div className="col-auto" id="temperature">13</div>
+        <div className="col-auto" id="temp-units">°C | °F</div>
+        <div className="col-auto" id="temp-data">
+          <ul id="temp-data-ul">
+            <li>
+              Feels like 10 °C
+            </li>
+            <li>
+              Humidity: 51
+            </li>
+            <li>
+              Wind: 2 km/h
+            </li>
+          </ul>
+        </div>
+      </div>
+
+
+
+
+    </div>
   );
 }
