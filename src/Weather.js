@@ -4,6 +4,7 @@ import Loader from "react-loader-spinner";
 
 
 export default function Weather(props) {
+  
   function showTemp(response) {
     let city = response.data.name;
     let temp = Math.round(response.data.main.temp);
