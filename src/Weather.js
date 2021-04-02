@@ -1,63 +1,83 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
 import "./Weather.css";
 
 
 export default function Weather(props) {
-  return (
-    <div className="Weather">
-      <form className="row">
-        <div className="col-auto">
-          <input
-            type="search"
-            placeholder="Enter a city"
-            className="form-control"
-            id="search-field"
-          />
-        </div>
-        <div className="col-auto">
-          <input
-            type="submit"
-            value="Search"
-            className="btn btn-primary mb-1"
-            id="search-btn"
-            autoComplete="off" />
-        </div>
-      </form>
+  const[weatherData, setWeatherData] = useState({ ready: false});
+  function handleResponse(response) {
+    setWeatherData({
+      ready: true,
+      iconUrl: "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
+      temperature: Math.round(response.data.main.temp),
+      city: response.data.name,
+      humidity: response.data.main.humidity,
+      wind: Math.round(response.data.wind.speed)
+    })
+  }
 
-      <div className="location-header">
-        <div className="col-auto" id="location">San Francisco</div>
-        <div className="col-6" id="current-date">Wednesday 01:06</div>
-        <div className="col-6" id="description">Clear Sky</div>
+  if (weatherData.ready) {
+    return (
+      <div className="Weather">
+        <form className="row">
+          <div className="col-auto">
+            <input
+              type="search"
+              placeholder="Enter a city"
+              className="form-control"
+              id="search-field"
+            />
+          </div>
+          <div className="col-auto">
+            <input
+              type="submit"
+              value="Search"
+              className="btn btn-primary mb-1"
+              id="search-btn"
+              autoComplete="off" />
+          </div>
+        </form>
+
+        <div className="location-header">
+          <div className="col-auto" id="location">{weatherData.city}</div>
+          <div className="col-6" id="current-date">Wednesday 01:06</div>
+          <div className="col-6" id="description">{weatherData.description}</div>
+        </div>
+
+        <div className="row">
+          <div className="col-2" id="icon-position">
+            <img 
+              src={weatherData.iconUrl}
+              id="temp-icon" 
+              width="100" 
+              alt={weatherData.description} />
+          </div>
+          <div className="col-auto" id="temperature">{weatherData.temperature}</div>
+          <div className="col-auto" id="temp-units">°C | °F</div>
+          <div className="col-auto" id="temp-data">
+            <ul id="temp-data-ul">
+              <li>
+                Humidity: {weatherData.humidity}%
+              </li>
+              <li>
+                Wind: {weatherData.wind} km/h
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
+    );
+  } else {
+      
+    const apiKey=`d181817faaf7ac4148d91ac2cdf0c`;
+    let city = "New York";
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
 
-      <div className="row">
-        <div className="col-2" id="icon-position">
-          <img 
-            src="https://openweathermap.org/img/wn/01n@2x.png" 
-            id="temp-icon" 
-            width="100" 
-            alt="temperature icon" />
-        </div>
-        <div className="col-auto" id="temperature">13</div>
-        <div className="col-auto" id="temp-units">°C | °F</div>
-        <div className="col-auto" id="temp-data">
-          <ul id="temp-data-ul">
-            <li>
-              Feels like 10 °C
-            </li>
-            <li>
-              Humidity: 51
-            </li>
-            <li>
-              Wind: 2 km/h
-            </li>
-          </ul>
-        </div>
-      </div>
+    axios.get(apiUrl).then(handleResponse);
+      
+    return "Loading..";
+  }
 
 
-
-
-    </div>
-  );
+  
 }
