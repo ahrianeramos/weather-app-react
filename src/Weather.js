@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import FormatDate from "./FormatDate";
 import axios from "axios";
 import "./Weather.css";
+import WeatherInfo from "./WeatherInfo";
 
 
 export default function Weather(props) {
@@ -41,39 +41,10 @@ export default function Weather(props) {
               autoComplete="off" />
           </div>
         </form>
-
-        <div className="location-header">
-          <div className="col-auto" id="location">{weatherData.city}</div>
-          <div className="col-6" id="current-date"><FormatDate date = {weatherData.date} /></div>
-          <div className="col-6" id="description">{weatherData.description}</div>
-        </div>
-
-        <div className="row">
-          <div className="col-2" id="icon-position">
-            <img 
-              src={weatherData.iconUrl}
-              id="temp-icon" 
-              width="100" 
-              alt={weatherData.description} />
-          </div>
-          <div className="col-auto" id="temperature">{weatherData.temperature}</div>
-          <div className="col-auto" id="temp-units">°C | °F</div>
-          <div className="col-auto" id="temp-data">
-            <ul id="temp-data-ul">
-              <li>
-                Feels Like {weatherData.feelsLike}°C
-              </li>
-              <li>
-                Humidity: {weatherData.humidity}%
-              </li>
-              <li>
-                Wind: {weatherData.wind} km/h
-              </li>
-            </ul>
-          </div>
-        </div>
+        <WeatherInfo data={weatherData} />
       </div>
     );
+
   } else {
       
     const apiKey=`2be57c3d4b0a6b7bb559880d83bc6801`;
