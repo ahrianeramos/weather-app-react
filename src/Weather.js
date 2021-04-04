@@ -3,7 +3,6 @@ import axios from "axios";
 import WeatherInfo from "./WeatherInfo";
 import "./Weather.css";
 
-
 export default function Weather(props) {
   const[weatherData, setWeatherData] = useState({ ready: false});
   const[city, setCity] = useState(props.defaultCity);
@@ -36,7 +35,6 @@ export default function Weather(props) {
     setCity(event.target.value);
   }
 
-
   if (weatherData.ready) {
     return (
       <div className="Weather">
@@ -45,9 +43,11 @@ export default function Weather(props) {
             <input
               type="search"
               placeholder="Enter a city"
+              onChange={handleCityChange}
+              autoComplete="off"
+              autoFocus="on"
               className="form-control"
               id="search-field"
-              onChange={handleCityChange}
             />
           </div>
           <div className="col-auto">
@@ -56,7 +56,7 @@ export default function Weather(props) {
               value="Search"
               className="btn btn-primary mb-1"
               id="search-btn"
-              autoComplete="off" />
+            />
           </div>
         </form>
         <WeatherInfo data={weatherData} />
