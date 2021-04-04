@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
-import "./Weather.css";
 import WeatherInfo from "./WeatherInfo";
+import "./Weather.css";
 
 
 export default function Weather(props) {
@@ -10,7 +10,7 @@ export default function Weather(props) {
   function handleResponse(response) {
     setWeatherData({
       ready: true,
-      iconUrl: "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
+      icon: response.data.weather[0].icon,
       temperature: Math.round(response.data.main.temp),
       city: response.data.name,
       date: new Date(response.data.dt * 1000),

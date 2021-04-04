@@ -39,18 +39,15 @@
 }
 
 #icon-position {
-  padding: 0px 0px 0px 5px;
-}
-
-#temp-icon {
+  padding: 0px 10px 0px 25px;
   position: relative;
-  top: -3px;
+  top: 18px;
 }
 
 #temperature {
   font-size: 4.5em;
   color: #000;
-  padding: 0px 0px 0px 15px;
+  padding: 0px 0px 0px 8px;
   position: relative;
   top: -10px;
 }
