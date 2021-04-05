@@ -10,6 +10,7 @@ export default function Weather(props) {
   function handleResponse(response) {
     setWeatherData({
       ready: true,
+      coord: response.data.coord,
       icon: response.data.weather[0].icon,
       temperature: Math.round(response.data.main.temp),
       city: response.data.name,
@@ -20,6 +21,7 @@ export default function Weather(props) {
       feelsLike: Math.round(response.data.main.feels_like)
     })
   }
+
 
   function search() {
     const apiKey=`2be57c3d4b0a6b7bb559880d83bc6801`;
@@ -61,7 +63,7 @@ export default function Weather(props) {
           </div>
         </form>
         <WeatherInfo data={weatherData} />
-        <WeatherForecast />
+        <WeatherForecast coord={weatherData.coord} />
       </div>
     );
 
