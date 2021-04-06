@@ -28,12 +28,15 @@ export default function WeatherForecast(props) {
                   <WeatherForecastDay data={dailyForecast} />
                 </div>
               );
+            } else {
+              return null;
             }
           })}
         </div>
       </div>
     );
   } else {
+    
     let apiKey = `2be57c3d4b0a6b7bb559880d83bc6801`;
     let latitude = props.coordinates.lat;
     let longitude = props.coordinates.lon;
