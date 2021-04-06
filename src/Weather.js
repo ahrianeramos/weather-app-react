@@ -42,7 +42,7 @@ export default function Weather(props) {
     return (
       <div className="Weather">
         <form className="row" onSubmit={handleSubmit}>
-          <div className="col-auto">
+          <div className="col-auto" id="search-field1">
             <input
               type="search"
               placeholder="Enter a city"
@@ -69,6 +69,8 @@ export default function Weather(props) {
 
   } else {
     search();
-    return "Loading..";
+    return (
+      <div className="Loading">Loading...</div>
+    );
   }
 }
