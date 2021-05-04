@@ -1,13 +1,18 @@
+body {
+  background: #0a192f;
+}
+
 .Weather {
   padding: 18px 18px 18px 18px;
   width: 500px;
   margin: 25px auto;
-  border: solid 1px rgba(0, 0, 0, 0.3);
+  border: solid 1.5px rgba(0, 0, 0, 0.3);
   border-radius: 7px;
   font-family: Calibri;
-  background: #fcfcfc;
+  background: #030b16;
   box-shadow: 3px 3px 7px 0px rgba(194, 193, 193, 0.3);
-  color: #5e5e58;
+  color: #8892b0;
+  border-color: #3b978d;
 }
 
 #search-field {
@@ -22,8 +27,17 @@ form #search-field1 {
   padding: 0px 0px 0px 15px;
 }
 
+form #search-field1 .form-control {
+  background: #030b16;
+  border-color: #3b978d;
+}
+
 #search-btn {
+  border-color: #3b978d;
   width: 90px;
+  background: #030b16;
+  padding: 6px 12px;
+  color: #3b978d;
 }
 
 .location-header {
@@ -34,7 +48,7 @@ form #search-field1 {
 #location {
   padding: 0px;
   font-size: 2.5em;
-  color: #030303;
+  color: #ccd6f6;
 }
 
 #current-date {
@@ -58,7 +72,7 @@ form #search-field1 {
 
 #temperature {
   font-size: 2.1em;
-  color: #000;
+  color: #ccd6f6;
   padding: 0px 0px 0px 8px;
   position: relative;
   top: -5px;
